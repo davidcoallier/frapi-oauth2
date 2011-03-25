@@ -38,21 +38,6 @@ class Action_Example extends Frapi_Action implements Frapi_Action_Interface
     }
 
     /**
-     * Constructor
-     *
-     * We put a comment in here because the Zend Framework
-     * code generate behaves oddly when a method doesn't have a
-     * docblock and it prevents us from sync'ing the code in
-     * the FRAPI admin.
-     *
-     */
-    public function __construct()
-    {
-        $auth = Frapi_Plugins_OAuth2_Auth($this->getParams());
-        $auth->authorize();
-    }
-
-    /**
      * Default Call Method
      *
      * This method is called when no specific request handler has been found
@@ -74,10 +59,9 @@ class Action_Example extends Frapi_Action implements Frapi_Action_Interface
      */
     public function executeGet()
     {
-        // Return a list of all resources in the collection.
-        if ($valid instanceof Frapi_Response) {
-            return $valid;
-        }
+
+        // Access-token validation
+        Default_Model_Auth::authorize($this->getParams());
 
         $resources = array(
             'meta' => array(
