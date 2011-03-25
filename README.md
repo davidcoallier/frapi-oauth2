@@ -43,3 +43,10 @@ The check is essentially this code:
 
 If this check fails to find an access_token in the request or in the headers, it throws an error with HTTP code 401 and
 the proper error message+format.
+
+
+Example
+-------
+The `examples` directory located in this repository contains the structure of a `custom/Action/Example.php` FRAPI action that 
+would have the OAuth2 verification in the constructore so all HTTP methods in this collection/resource are required to be
+authenticated via OAuth2
